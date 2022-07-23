@@ -15,9 +15,8 @@ public class UtilisateurDAO {
 private final String  SQL_INSERT_UTILISATEUR ="";	
 private final String  SQL_UPDATE_UTILISATEUR ="";	
 private final String  SQL_DELETE_UTILISATEUR ="";	
-private final String  SQL_SELECT_UTILISATEUR ="";	
+private final String  SQL_SELECT_UTILISATEUR ="";
 private final String SQL_SELECT_ALL_UTILISATEUR="";
-private Connection connection = ConnectorDb.getConnection();
 private Utilisateur createUtilisateur() {
 	return null;
 }
@@ -26,9 +25,12 @@ private Utilisateur updateUtilisateur() {
 }
 private void deleteUtilisateur() {
 }
-public List<Utilisateur> getUtilisateurs() throws SQLException{
+public List<Utilisateur> getUtilisateurs() {
    List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-	Statement statement;
+
+   try(    Connection connection = ConnectorDb.getConnection()){
+
+   Statement statement;
     statement = connection.createStatement();
     ResultSet resultSet;
     resultSet = statement.executeQuery(
@@ -47,7 +49,12 @@ public List<Utilisateur> getUtilisateurs() throws SQLException{
     resultSet.close();
     statement.close();
     connection.close();
-	return utilisateurs;
+	   
+} catch (  Exception e ) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+    return utilisateurs;
 
 }
 }

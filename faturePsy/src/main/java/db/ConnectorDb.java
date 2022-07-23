@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 public final class ConnectorDb  {
 
+	private ConnectorDb(){
+		
+	}
 	private static final int port =  3306;
 	private static final String serverDb ="localhost";
 			
